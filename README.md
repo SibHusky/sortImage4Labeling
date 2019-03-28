@@ -8,12 +8,9 @@ Python3 with numpy package
 
 # how to:
 
-navigate to the file and run it:
-$ python sortImage4Labeling.py
-
 Now after the GUI has pop up, the following steps must be done in order.
-1. type in the path like the example below shows
-2. Click on "Get path", now the first an the second image should be shown. The big frame in th middle shows the main image. The main image will be copied on pressing the key. The little frame shows the next image to classify
+1. type in the path like the example below (GUI) shows
+2. Click on "Get path", now the first and the second image should be shown. The big frame in th middle shows the main image. The main image will be copied on pressing the key. The little frame shows the next image to classify
 3. Type in the Label Class and the corresbonding keys
 4. Klick on Commit Connection
 5. Klick on start labeling
