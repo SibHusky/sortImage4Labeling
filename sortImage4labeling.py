@@ -27,6 +27,7 @@ class imagelablerGUI:
 		self.get_path = Button(master, text="Get path", command=self.get_path_clicker)
 		self.get_path.place(x=500,y=10)
 
+
 		self.path_example = Label(master, text="like this:  C:\\Users\\DeepLearning\\lable_image")
 		self.path_example.place(x = 70, y=30)
 
@@ -70,22 +71,38 @@ class imagelablerGUI:
 	def get_path_clicker(self):
 		self.target_path = self.path_in_box.get()
 		print(self.target_path)
-		pathlist_png = glob.glob(self.target_path+"\\*.png")
-		pathlist_jpg = glob.glob(self.target_path+"\\*.jpg")
-		print(self.target_path+"\\*.png")
-		self.pathlist = pathlist_png + pathlist_jpg
+		if os.path.exists(self.target_path):
+			pathlist_png = glob.glob(self.target_path+"\\*.png")
+			pathlist_jpg = glob.glob(self.target_path+"\\*.jpg")
+			print(self.target_path+"\\*.png")
+			self.pathlist = pathlist_png + pathlist_jpg
 
-		self.next_imag = ImageTk.PhotoImage(Image.open(self.pathlist[1]))
-		self.main_imag = ImageTk.PhotoImage(Image.open(self.pathlist[0]))
-		self.prev_imag = ImageTk.PhotoImage(self.black_screen)
+			if len(self.pathlist) == 0:
 
-		self.frame_next_imag = Label(self.master, image = self.next_imag, height=75, width=150)
-		self.frame_main_imag = Label(self.master, image = self.main_imag, height=250, width=500)
-		self.frame_prev_imag = Label(self.master, image = self.prev_imag, height=75, width=150)
-		
-		self.frame_next_imag.place(x=680, y=100)
-		self.frame_main_imag.place(x=170, y=80)
-		self.frame_prev_imag.place(x=10 ,y=100)
+				self.path_feedback = Label(self.master, text="No png or jpg files found!")
+				self.path_feedback.place(x=570, y=10)
+
+			else:
+
+
+				self.next_imag = ImageTk.PhotoImage(Image.open(self.pathlist[1]))
+				self.main_imag = ImageTk.PhotoImage(Image.open(self.pathlist[0]))
+				self.prev_imag = ImageTk.PhotoImage(self.black_screen)
+
+				self.frame_next_imag = Label(self.master, image = self.next_imag, height=75, width=150)
+				self.frame_main_imag = Label(self.master, image = self.main_imag, height=250, width=500)
+				self.frame_prev_imag = Label(self.master, image = self.prev_imag, height=75, width=150)
+				
+				self.frame_next_imag.place(x=680, y=100)
+				self.frame_main_imag.place(x=170, y=80)
+				self.frame_prev_imag.place(x=10 ,y=100)
+
+		else:
+
+			self.path_feedback = Label(self.master, text="Path does not exist!")
+			self.path_feedback.place(x=570, y=10)
+
+
 
 	def commit_clicker(self):
 		self.readkey1 = self.key1.get()
